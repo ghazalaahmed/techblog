@@ -1,6 +1,6 @@
 const { Post } = require('../models');
 
-const postdata =
+const postData =
 [
   {
     "postTitle": "Beautiful Day",
@@ -19,6 +19,6 @@ const postdata =
   }
 ];
 
-const seedPost = () => Post.bulkCreate(postdata);
+const seedPost = () => Post.bulkCreate(postData);
 
 module.exports = seedPost;

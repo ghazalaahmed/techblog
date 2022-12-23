@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
 
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    res.render("posts-comments", { posts, loggedIn: req.session.loggedIn });
+    res.render("posts-comments", { post, loggedIn: req.session.loggedIn });
   } catch (err) {
     res.status(500).json(err);
   }
