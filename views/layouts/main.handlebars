@@ -2,39 +2,41 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MVC Tech Blog</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <meta name="author" content="Ghibli">
+  <title>Home | Tech Blog</title>
+  <link href="/images/favicon.ico" rel="shortcut icon">
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
+  <link rel="stylesheets" href="/stylesheets/style.css">
 </head>
 
-<body>
-  <div class="wrapper">
-      <header class="hero">
-          <div>
-            <nav class"nav">
-                    <a class="link" href="/">Home</a>
-                    <a class="link" href="/dashboard">Dashboard</a>
-                    {{#if loggedIn}}
-                    <a class="link" href="/" id="logout">Logout</a>
-                    {{else}}
-                    <a class="link" href="/login">Login</a>
-                    {{/if}}
-                </nav>          
-          </div>
+<body class="flex-column min-100-vh">
+  <nav class="navbar">
+    <ul>
+      <li class="li-inline nav-item"><a href="/">Home</a></li>
+      <li class="li-inline nav-item"><a href="/dashboard">Dashboard</a></li>
+      {{#unless loggedIn}}
+      <li class="li-inline nav-item"><a href="/login">Login</a></li>
+      {{/unless}}
+      <li class="li-inline nav-item"><a href="#" id="logout-link">Logout</a></li>
+    </ul>
+  </nav>
 
-          <h1 class="app-title"><i class="fab "></i>The Tech Blog</h1>
-      </header>
+  <header class="hero">
+    <h1 class="app-title"><a href="/">The Tech Blog</a></h1>
+  </header>
 
-    <main>
-      {{{ body }}}
-    </main>
-  </div>
+  <main class="col-auto">
+    {{{body}}}
+  </main>
 
-    {{#if loggedIn}}
-    <script src="/javascript/logout.js"></script>
-    {{/if}}
-
+  <footer class="flex-row justify-center">
+    &copy; The Tech Blog Folks
+  </footer>
 </body>
 
 </html>
+{{#if loggedIn}}
+<script src="/javascript/logout.js"></script>
+{{/if}}

@@ -1,31 +1,41 @@
-async function editFormHandler(event) {
-    event.preventDefault();
+const postId = document.querySelector('input[name="post-id"]').value;
 
-    const title = document.querySelector('input[name="post-title"]').value.trim();
-    const content = document.querySelector('input[name="content"]').value.trim();
+const editFormHandler = async (event) => {
+  event.preventDefault();
 
-    const id = window.location.toString().split('/')[
-      window.location.toString().split('/').length - 1
-    ];
-      
-      const response = await fetch(`/api/posts/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({
-          post_id: id,
-          title,
-          content
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      
-      if (response.ok) {
-        document.location.replace('/dashboard/');
-      } else {
-        alert(response.statusText);
-      }
+  const title = document.querySelector('input[name="title"]').value;
+  const content = document.querySelector('textarea[name="post-body"]').value;
 
-}
+  const response = await fetch(`/api/post/${postId}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      title,
+      content,
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
 
-document.querySelector('.edit-post-form').addEventListener('submit', editFormHandler);
+  console.log(response);
+  if (response.ok) {
+    document.location.replace('/dashboard');
+  } else {
+    alert('Failed to update your post');
+  }
+  document.location.replace('/dashboard');
+};
+
+const deleteClickHandler = async () => {
+  await fetch(`/api/post/${postId}`, {
+    method: 'DELETE'
+  });
+
+  document.location.replace('/dashboard');
+};
+document
+  .querySelector('#editpost-form')
+  .addEventListener('submit', editFormHandler);
+document
+  .querySelector('#delete-btn')
+  .addEventListener('click', deleteClickHandler);
