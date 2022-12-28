@@ -11,21 +11,21 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    commentContentt: {
+    commentContent: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true, 
+      unique: true,
     },
     dateCreated: {
       type: DataTypes.DATEONLY,
       allowNull: false,
-      defaultValue:DataTypes.NOW,
+      defaultValue: DataTypes.NOW,
     },
-     userId: {
+    userId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
-        key: 'id',
+        model: "user",
+        key: "id",
       },
     },
     postId: {

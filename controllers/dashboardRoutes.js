@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const sequelize = require("../config/connection");
-const { Post, User, Comment } = require("../models");
+const sequelize = require('../config/connection');
+const { Post, User } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", withAuth, async (req, res) => {
@@ -13,7 +13,7 @@ router.get("/", withAuth, async (req, res) => {
     const posts = postData.map((post) => post.get({ plain: true }));
     console.log(posts);
 
-    res.render("all-posts", {
+    res.render("all-posts-admin", {
       layout: "dashboard",
 
       posts,
@@ -24,7 +24,7 @@ router.get("/", withAuth, async (req, res) => {
 });
 
 router.get("/new", withAuth, (req, res) => {
-  res.render("new-post", {
+  res.render("newpost", {
     layout: "dashboard",
   });
 });

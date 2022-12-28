@@ -1,4 +1,4 @@
-const sequelize = require("../config/connection");
+const sequelize = require('../config/connection');
 const router = require("express").Router();
 const { Post, Comment, User } = require("../models/");
 const withAuth = require("../utils/auth");
@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
-    res.render("allpostsadmin", { posts, loggedIn: req.session.loggedIn });
+    res.render("all-posts-admin", { posts, loggedIn: req.session.loggedIn });
   } catch (err) {
     res.status(500).json(err);
   }
