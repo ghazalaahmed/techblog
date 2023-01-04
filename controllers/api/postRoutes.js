@@ -1,19 +1,23 @@
-const router = require('express').Router();
-const { Post } = require('../../models/');
-const withAuth = require('../../utils/auth');
+const router = require("express").Router();
+const session = require("express-session");
+const { Post } = require("../../models/");
+const withAuth = require("../../utils/auth");
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   const body = req.body;
   try {
-    const newpost = await Post.create({ ...body});
+    const newpost = await Post.create({
+      title: body.title,
+      content: body.content,
+      userId: req.session.userId,
+    });
     res.json(newpost);
-     } catch (err) {
+  } catch (err) {
     res.status(500).json(err);
   }
 });
 
-
-router.put('/:id', withAuth, async (req, res) => {
+router.put("/:id", withAuth, async (req, res) => {
   try {
     const [affectedRows] = await Post.update(req.body, {
       where: {
@@ -31,8 +35,7 @@ router.put('/:id', withAuth, async (req, res) => {
   }
 });
 
-
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   try {
     const [affectedRows] = Post.destroy({
       where: {
