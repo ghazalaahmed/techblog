@@ -6,11 +6,11 @@
         <a href="/post/{{id}}">{{title}}</a>
       </h2>
       <div>
-        Posted by {{User.username}} on {{format_date createdAt}}
+        Posted by {{User.username}} on {{format_date dateCreated}}
       </div>
     </div>
     <div class="card-body">
-      {{body}}
+      {{content}}
     </div>
   </article>
   {{/each}}

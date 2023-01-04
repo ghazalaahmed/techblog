@@ -1,22 +1,22 @@
 const newFormHandler = async function (event) {
   event.preventDefault();
 
-  const postTitle = document.querySelector('input[name="post-title"]').value;
-  const postContent = document.querySelector(
-    'textarea[name="post-body"]'
+  const title = document.querySelector('.form-input').value;
+  const content = document.querySelector(
+    '.form-textarea'
   ).value;
-
-
+console.log(title)
+console.log(content)
   await fetch(`/api/post`, {
     method: "POST",
     body: JSON.stringify({
-      postTitle,
-      postContent,
+      title,
+      content,
     }),
     headers: { "Content-Type": "application/json" },
   });
 };
 
 document
-  .querySelector("#newpost-form")
+  .querySelector("#new-post-form")
   .addEventListener("submit", newFormHandler);
