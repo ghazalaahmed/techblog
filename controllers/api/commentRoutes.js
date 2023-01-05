@@ -17,6 +17,7 @@ router.get("/", withAuth, async (req, res) => {
 
 router.post("/", withAuth, async (req, res) => {
   const body = req.body;
+  console.log(body)
 
   try {
     const newComment = await Comment.create({
@@ -25,6 +26,7 @@ router.post("/", withAuth, async (req, res) => {
     });
     res.json(newComment);
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
   }
 });
