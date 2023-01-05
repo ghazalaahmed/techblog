@@ -1,4 +1,4 @@
-const id = document.querySelector('input[name="post-id"]').value;
+const postId = document.querySelector('input[name="post-id"]').value;
 
 const editFormHandler = async (event) => {
   event.preventDefault();
@@ -30,7 +30,7 @@ const editFormHandler = async (event) => {
 
 const deleteClickHandler = async () => {
   await fetch(`/api/post/${postId}`, {
-    method: "DELETE",
+    method: "DELETE"
   });
 
   document.location.replace("/dashboard");
